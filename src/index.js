@@ -23,7 +23,7 @@ app.on("ready", () => {
     center: true,
     maximizable: false,
     show: false,
-    titleBarStyle: "hidden",
+    //titleBarStyle: "hidden",
     trafficLightPosition: { x: 730, y: 10 },
     titleBarOverlay: {
       color: "#2f3241",
