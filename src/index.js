@@ -1,7 +1,12 @@
 "use strict";
 
 //instanciando los objetos app y BrowserWindow
-const { app, BrowserWindow } = require("electron");
+import { app, BrowserWindow } from "electron";
+import devtools from "./devtools";
+
+if (process.env.NODE_ENV == "development") {
+  devtools();
+}
 
 //imprimiendo un mensaje en la consola antes de salir
 app.on("before-quit", () => {
@@ -18,6 +23,12 @@ app.on("ready", () => {
     center: true,
     maximizable: false,
     show: false,
+    titleBarStyle: "hidden",
+    trafficLightPosition: { x: 730, y: 10 },
+    titleBarOverlay: {
+      color: "#2f3241",
+      symbolColor: "#74b1be",
+    },
   });
 
   win.once("ready-to-show", () => {
@@ -36,4 +47,5 @@ app.on("ready", () => {
   });
 
   win.loadURL(`file://${__dirname}/renderer/index.html`);
+  win.toggleDevTools();
 });
